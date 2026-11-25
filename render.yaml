@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: vortex-tracker
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python dashboard.py
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: DATABASE_URL
+        sync: false        # paste your Supabase connection string in the Render dashboard
+      - key: ADMIN_TOKEN
+        generateValue: true
